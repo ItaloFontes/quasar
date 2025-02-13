@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-<% if (sfcStyle === 'composition') { %>
+<% if (typescriptConfig === 'composition') { %>
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue'
 
@@ -106,7 +106,7 @@ export default defineComponent({
     return {leftDrawerOpen, essentialLinks}
   }
 });
-<% } else if (sfcStyle === 'class') { %>
+<% } else if (typescriptConfig === 'class') { %>
 import { Vue, Component } from 'vue-property-decorator';
 import EssentialLink from 'components/EssentialLink.vue'
 
@@ -162,7 +162,7 @@ export default class MainLayout extends Vue {
   leftDrawerOpen = false;
   essentialLinks = linksData;
 }
-<% } else if (sfcStyle === 'options') { %>
+<% } else if (typescriptConfig === 'options') { %>
 import Vue from 'vue';
 import EssentialLink from 'components/EssentialLink.vue'
 

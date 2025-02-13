@@ -1,3 +1,0 @@
-{
-  "<%= pkgName.replace('quasar-app-extension-', '') %>": {}
-}

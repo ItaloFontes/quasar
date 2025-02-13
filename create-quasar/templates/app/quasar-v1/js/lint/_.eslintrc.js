@@ -1,3 +1,4 @@
+
 module.exports = {
   // https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy
   // This option interrupts the configuration hierarchy at this file
@@ -28,10 +29,8 @@ module.exports = {
     // 'plugin:vue/recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
     <% if (lintConfig === 'standard') { %>'standard'
-    <% }
-      else if (lintConfig === 'airbnb') { %>'airbnb-base'
-    <% }
-      else if (lintConfig === 'prettier') { %>// https://github.com/prettier/eslint-config-prettier#installation
+    <% } else if (lintConfig === 'airbnb') { %>'airbnb-base'
+    <% } else if (lintConfig === 'prettier') { %>// https://github.com/prettier/eslint-config-prettier#installation
     // usage with Prettier, provided by 'eslint-config-prettier'.
     'prettier'<% } %>
   ],
@@ -75,8 +74,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
-    <% }
-      else if (lintConfig === 'airbnb') { %>
+    <% } else if (lintConfig === 'airbnb') { %>
     'no-param-reassign': 'off',
     'no-void': 'off',
     'no-nested-ternary': 'off',

@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-<% if (sfcStyle === 'composition') { %>
+<% if (typescriptConfig === 'composition') { %>
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -49,7 +49,7 @@ export default defineComponent({
     }
   }
 });
-<% } else if (sfcStyle === 'class') { %>
+<% } else if (typescriptConfig === 'class') { %>
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
@@ -59,7 +59,7 @@ export default class EssentialLink extends Vue {
   @Prop({ type: String, default: '#' }) readonly link!: string;
   @Prop({ type: String, default: ''}) readonly icon!: string;
 }
-<% } else if (sfcStyle === 'options') { %>
+<% } else if (typescriptConfig === 'options') { %>
 import Vue from 'vue';
 
 export default Vue.extend({

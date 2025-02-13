@@ -12,7 +12,7 @@
 <script lang="ts">
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
-<% if (sfcStyle === 'composition') { %>
+<% if (typescriptConfig === 'composition') { %>
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -47,7 +47,7 @@ export default defineComponent({
     return { todos, meta };
   }
 });
-<% } else if (sfcStyle === 'class') { %>
+<% } else if (typescriptConfig === 'class') { %>
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component({
@@ -80,7 +80,7 @@ export default class PageIndex extends Vue {
     totalCount: 1200
   };
 };
-<% } else if (sfcStyle === 'options') { %>
+<% } else if (typescriptConfig === 'options') { %>
 import Vue from 'vue';
 
 export default Vue.extend({

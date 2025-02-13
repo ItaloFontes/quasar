@@ -14,5 +14,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-# create-test-project script output
-test-project/

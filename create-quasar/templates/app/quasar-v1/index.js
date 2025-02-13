@@ -1,4 +1,5 @@
-export async function script ({ scope, utils }) {
+
+module.exports = async function ({ scope, utils }) {
   await utils.prompts(scope, [
     {
       type: 'text',
@@ -9,11 +10,10 @@ export async function script ({ scope, utils }) {
         utils.isValidPackageName(val) || 'Invalid package.json name'
     },
     utils.commonPrompts.productName,
-    utils.commonPrompts.description
+    utils.commonPrompts.description,
+    utils.commonPrompts.author
   ])
 
-  await utils.injectAuthor(scope)
-
-  const { script } = await import(`./${ scope.scriptType }/index.js`)
+  const script = require(`./${scope.scriptType}`)
   await script({ scope, utils })
 }

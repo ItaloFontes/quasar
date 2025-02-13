@@ -1,17 +1,17 @@
-export async function script ({ scope, utils }) {
+
+module.exports = async function ({ scope, utils }) {
   await utils.prompts(scope, [
+    utils.commonPrompts.quasarVersion,
+
     {
       type: 'text',
       name: 'name',
       message: 'Project name (npm name, kebab-case, without "quasar-ui" prefix)',
       validate: (val) =>
         utils.isValidPackageName(val) || 'Invalid package.json name'
-    }
-  ])
+    },
 
-  await utils.injectAuthor(scope)
-
-  await utils.prompts(scope, [
+    utils.commonPrompts.author,
     utils.commonPrompts.license,
 
     {
@@ -41,7 +41,7 @@ export async function script ({ scope, utils }) {
       type: 'text',
       name: 'packageDescription',
       message: 'Package description',
-      initial: 'My awesome component'
+      initial: 'My awesome component',
     },
 
     {
@@ -52,7 +52,7 @@ export async function script ({ scope, utils }) {
     },
 
     {
-      type: (_, { features }) => (features.component ? 'text' : null),
+      type: (_, { features }) => features.component ? 'text' : null,
       name: 'componentName',
       message: 'Component name (PascalCase)',
       initial: 'MyComponent',
@@ -60,7 +60,7 @@ export async function script ({ scope, utils }) {
     },
 
     {
-      type: (_, { features }) => (features.directive ? 'text' : null),
+      type: (_, { features }) => features.directive ? 'text' : null,
       name: 'directiveName',
       message: 'Directive name (kebab-case, without "v-" prefix)',
       initial: 'my-directive',
@@ -68,7 +68,7 @@ export async function script ({ scope, utils }) {
     },
 
     {
-      type: (_, { features }) => (features.ae ? 'text' : null),
+      type: (_, { features }) => features.ae ? 'text' : null,
       name: 'aeDescription',
       message: 'App Extension description',
       initial: 'A Quasar App Extension',
@@ -76,7 +76,7 @@ export async function script ({ scope, utils }) {
     },
 
     {
-      type: (_, { features }) => (features.ae ? 'multiselect' : null),
+      type: (_, { features }) => features.ae ? 'multiselect' : null,
       name: 'preset',
       message: 'Pick the needed App Extension scripts:',
       format: utils.convertArrayToObject,
@@ -94,10 +94,15 @@ export async function script ({ scope, utils }) {
           value: 'uninstall'
         }
       ]
-    }
+    },
+
+    utils.commonPrompts.repositoryType,
+    utils.commonPrompts.repositoryURL,
+    utils.commonPrompts.homepage,
+    utils.commonPrompts.bugs
   ])
 
-  const { script } = await import(`./quasar-v1/index.js`)
+  const script = require(`./quasar-${scope.quasarVersion}`)
   await script({ scope, utils })
 
   // we don't want to install
